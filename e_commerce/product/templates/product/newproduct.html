@@ -1,0 +1,12 @@
+ <form action="{% url 'product:posted' %}" method="post" >
+        {% csrf_token %}
+        <p>ID : {{ form.product_id }}</p>
+        <p>Name: {{ form.product_name }}</p>
+        <p>Description : {{ form.product_desc }}</p>
+        <p>Price: {{ form.price }}</p>
+        <p>Amount: {{ form.amount }}</p>
+        <p>Category: {{ form.category_id }}</p>
+        <p>Admin_id: {{ form.admin_id }}</p>
+        <p>Product image: {{ form.product_img }}</p>
+        <input type="submit" value="Upload">
+ </form>

@@ -1,0 +1,14 @@
+<body>
+<h1>This is test page with banana</h1>
+{% if item %}
+        <p>{{ item.product_id }}</p>
+        <p>{{ item.product_name }}</p>
+        <p>{{ item.product_desc }}</p>
+        <p>{{ item.price }}</p>
+        <a href = ""> <img src= "../{{ item.product_img }}" alt="This is an image of a banana" border="0" width="100" height="100"/>
+        </a>
+        <p>{{ item.amount }}</p>
+        <p>{{ item.category_id }}</p>
+        <p>{{ item.admin_id }}</p>
+{% endif %}
+</body>
