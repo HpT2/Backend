@@ -2,19 +2,37 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import LoginForm
 from django.db import connection
+from service.views import homepage
+from management.views import admin_home
 # Create your views here.
 
 
-def homepage(request):
-    return render(request, 'main/homepage.html')
-
-
-def login(request):
+def login_customer(request):
     form = LoginForm()
-    return render(request, 'main/log_in.html', {'form': form})
+    return render(request,'main/login_customer.html', {'form': form})
+
+def login_customer_res(request):
+    if (request.method == 'POST'):
+        username = request.POST['username']
+        password = request.POST['password']
+        cursor = connection.cursor()
+        query = 'exec  [service].[authentication] @username="{0}", @password="{1}"' \
+            .format(username, password)
+        print(query)
+        cursor.execute(query)
+        res = cursor.fetchall()
+        if (len(res) == 0):
+            cursor.close()
+            return HttpResponse("No user")
+        cursor.close()
+        return homepage(request)
+
+def login_admin(request):
+    form = LoginForm()
+    return render(request, 'main/login_admin.html', {'form': form})
 
 
-def login_res(request):
+def login_admin_res(request):
     if(request.method == 'POST'):
         username = request.POST['username']
         password = request.POST['password']
@@ -28,4 +46,4 @@ def login_res(request):
             cursor.close()
             return HttpResponse("No user")
         cursor.close()
-        return homepage(request)
+        return admin_home(request)

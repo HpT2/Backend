@@ -1,0 +1,8 @@
+{% extends "polls/base.html" %}
+{% block content %}
+    <ul>
+        {% for item in myitem %}
+            <li>{{item}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

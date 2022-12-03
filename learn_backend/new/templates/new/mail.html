@@ -1,0 +1,12 @@
+{% extends 'new/base.html' %}
+{% block form %}
+    <form action="{% url 'new:mailed' %}" method="post" >
+        {% csrf_token %}
+        <p>Title : {{fields.title}}</p>
+        <p>Content: {{fields.content}}</p>
+        <p>Mail : {{fields.mail}}</p>
+        <input type="submit" value="post bài">
+    </form>
+<a href="{% url 'new:post' %}">Post</a></br>
+<a href="{% url 'new:new' %}">new site</a></br>
+{% endblock %}

@@ -1,0 +1,8 @@
+<h1>This is customer login page</h1>
+<form action="{% url 'main:login_customer_res' %}" method="post" >
+        {% csrf_token %}
+        <p>Username:  {{ form.username }}</p>
+        <p>Password:  {{ form.password }}</p>
+        <input type="submit" value="Login">
+ </form>
+<a href ="{% url 'main:login_admin' %}"> Login as admin</a>
