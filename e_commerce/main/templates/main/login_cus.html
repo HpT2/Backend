@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ogani Template" />
+    <meta name="keywords" content="Ogani, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ogani | Login</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+      rel="stylesheet"
+    />
+
+    {% load static %}
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+  </head>
+
+  <body>
+    <!-- Login Form Begin -->
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="col-lg-3">
+          <div class="header__logo">
+              <a href="./index.html"><img src="img/logo.png" alt=""></a>
+          </div>
+      </div>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img
+              src="https://www.dole.com/-/media/project/dole/produce-images/headers/dole-produce-veg-medley.png?rev=e9e55201dbc6451e91cfd7d73d7cdb06&hash=CC1AFA2C5EC625A80EA224E1232FE39B"
+              class="img-fluid"
+              alt="Login image"
+            />
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div class="d-flex justify-content-between">
+              <h2 class="mb-4 text-uppercase login-title">
+                Login
+              </h2>
+            </div>
+            <!-- Form Begin -->
+            <form>
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input
+                  type="email"
+                  id="username"
+                  class="form-control form-control-lg"
+                  placeholder="Enter a username"
+                />
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control form-control-lg"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-center mt-4" >
+                  <!-- Checkbox -->
+                  <div class="form-check mb-0" >
+                    <p class=" fw-bold mb-0 register-text">
+                      Don't have an account?
+                      <a href="./signup.html"
+                        >Register</a
+                      >
+                    </p>
+                    <a href="#!" class="text-body mt-2 forget-pw" >Forgot password?</a>
+                  </div>
+                </div>
+                <!-- Button Login -->
+                <div class="text-center text-lg-start mt-3 pt-2 px-2" >
+                  <button
+                    type="button"
+                    class="btn-primary btn-lg "
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <div class="form-check  login-navi" >
+                  <p class="fw-bold mb-0 login-navi-text" >
+                    Login as
+                    <a href="./loginadmin.html"
+                      >admin</a
+                    >
+                </div>
+            </form>
+            <!-- Form End -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Form End -->
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

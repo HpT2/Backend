@@ -1,0 +1,58 @@
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+
+.btn-primary {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-color: #649910;
+  background-color: #7fad39;
+}
+
+.login-title {
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #688838fa;
+  border-color: #fff;
+}
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #688838fa;
+  border-color: #fff;
+}
+.btn-primary.focus,
+.btn-primary:focus {
+  color: #fff;
+  color: #fff;
+  background-color: #688838fa;
+  border-color: #fff;
+}
+.register-text,
+.forget-pw {
+  font-size: 14px;
+}
+
+.register-text a {
+  color: #88a957;
+}
+
+.login-navi {
+  padding: 60px 0;
+}
+.login-navi-text {
+  font-size: 18px;
+  padding-left: 0;
+}
+
+.login-navi-text a {
+  color: #88a957;
+}
