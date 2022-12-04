@@ -11,7 +11,8 @@ def login_customer(request):
     form = LoginForm()
     return render(request,'main/login_customer.html', {'form': form})
 
-def login_customer_res(request):
+
+def home(request):
     if (request.method == 'POST'):
         username = request.POST['username']
         password = request.POST['password']
@@ -26,6 +27,8 @@ def login_customer_res(request):
             return HttpResponse("No user")
         cursor.close()
         return homepage(request, username)
+    else:
+        return homepage(request)
 
 
 def signup_page(request):
@@ -51,4 +54,6 @@ def login_admin_res(request):
             cursor.close()
             return HttpResponse("No user")
         cursor.close()
-        return admin_home(request)
+        return admin_home(request,username)
+    else:
+        return HttpResponse("You have not login")

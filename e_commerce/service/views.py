@@ -5,6 +5,7 @@ from django.db import connection
 
 
 def homepage(request, username=None):
+    request.session['username'] = username
     return render(request, 'service/homepage.html', {'user': username})
 
 
