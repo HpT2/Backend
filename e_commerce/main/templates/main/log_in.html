@@ -1,7 +1,0 @@
-<h1>This is admin login page</h1>
-<form action="{% url 'main:login_res' %}" method="post" >
-        {% csrf_token %}
-        <p>Username:  {{ form.username }}</p>
-        <p>Password:  {{ form.password }}</p>
-        <input type="submit" value="Login">
- </form>

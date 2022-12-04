@@ -15,18 +15,11 @@
     />
 
     <!-- Css Styles -->
-<<<<<<< HEAD
       {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/style.css" type="text/css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-=======
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="stylesheet" href="css/login.css" />
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
   </head>
 
   <body>
@@ -53,12 +46,8 @@
               </h2>
             </div>
             <!-- Form Begin -->
-<<<<<<< HEAD
             <form action="{% url 'service:register' %}" method="POST">
               {% csrf_token %}
-=======
-            <form method="POST">
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
               <!-- Name Begin -->
               <div class="row">
               <div class="col-md-6 mb-4">
@@ -67,10 +56,7 @@
                 <input
                   type="text"
                   id="firstname"
-<<<<<<< HEAD
                   name="Fname"
-=======
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
                   class="form-control form-control-lg"
                   placeholder="First Name"
                 />
@@ -82,33 +68,20 @@
                 <input
                   type="text"
                   id="lastname"
-<<<<<<< HEAD
                   name="Lname"
-=======
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
                   class="form-control form-control-lg"
                   placeholder="Last Name"
                 />
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="username">Username</label>
                 <input
-<<<<<<< HEAD
                   type="text"
                   id="username"
                   name="username"
-=======
-                  type="email"
-                  id="username"
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
                   class="form-control form-control-lg"
                   placeholder="Username"
                 />
@@ -120,12 +93,9 @@
                 <input
                   type="password"
                   id="password"
-<<<<<<< HEAD
                   name="password"
-=======
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
-                  class="form-control form-control-lg"
                   placeholder="Password"
+                  class="form-control form-control-lg"
                 />
               </div>
                <!-- Email input -->
@@ -133,69 +103,32 @@
                 <label class="form-label" for="email">Email</label>
                 <input
                   type="email"
-<<<<<<< HEAD
                   id="Email"
                   name="Email"
-=======
-                  id="email"
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
                   class="form-control form-control-lg"
                   placeholder="Email address"
                 />
               </div>
-<<<<<<< HEAD
-
-=======
-             
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
               <div class="d-flex justify-content-between align-items-center">
                 <div class="text-center mt-4" >
                   <!-- Checkbox -->
                   <div class="form-check mb-0" >
                     <p class=" fw-bold mb-0 register-text">
                       Do have an account?
-<<<<<<< HEAD
                       <a href="{% url 'main:login_customer' %}"
                         >Login</a
                       >
 
-=======
-                      <a href="./login.html"
-                        >Login</a
-                      >
-                   
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
                   </div>
                 </div>
 
                 <!-- Button Login -->
                 <div class="text-center text-lg-start mt-3 pt-2 px-2" >
-<<<<<<< HEAD
                   <input type="submit" value="Sign up" class="btn-primary btn-lg ">
-=======
-                  <button
-                    type="button"
-                    class="btn-primary btn-lg "
-                  >
-                    Sign up
-                  </button>
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
                 </div>
               </div>
-
-              <div class="text-center mt-3">
-                <div class="form-check  login-navi" >
-<<<<<<< HEAD
-
-                </div>
             </form>
 
-=======
-                 
-                </div>
-            </form>
-        
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
             <!-- Form End -->
           </div>
         </div>
@@ -204,7 +137,7 @@
 
     <!-- Login Form End -->
     <!-- Js Plugins -->
-<<<<<<< HEAD
+
     <script src="../../static/js/jquery-3.3.1.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
     <script src="../../static/js/jquery.nice-select.min.js"></script>
@@ -215,15 +148,3 @@
     <script src="../../static/js/main.js"></script>
   </body>
 </html>
-=======
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
-</html>
->>>>>>> 3d794e2ce867cd66a226614aa0e5b992a2cd426b
