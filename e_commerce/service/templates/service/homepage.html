@@ -53,7 +53,11 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                {% if user %}
+                    <i class="fa fa-user"></i> {{ user.username }}
+                {% else %}
+                    <a href="{% url 'main:login_customer' %}"><i class="fa fa-user"></i> Login</a>
+                {% endif %}
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -119,7 +123,11 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                {% if user %}
+                                    <a href = "#"><i class="fa fa-user"></i> {{ user }}</a>
+                                {% else %}
+                                    <a href="{% url 'main:login_customer' %}"><i class="fa fa-user"></i> Login</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

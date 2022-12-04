@@ -25,7 +25,12 @@ def login_customer_res(request):
             cursor.close()
             return HttpResponse("No user")
         cursor.close()
-        return homepage(request)
+        return homepage(request, username)
+
+
+def signup_page(request):
+    return render(request, 'main/signup.html')
+
 
 def login_admin(request):
     form = LoginForm()

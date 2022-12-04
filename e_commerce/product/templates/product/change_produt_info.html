@@ -1,0 +1,14 @@
+
+
+<form action="#" method="post" >
+        {% csrf_token %}
+        <p>ID : <input type="number" name="product_id" required id="id_product_id" value="{{ product.product_id }}"></p>
+        <p>Name: <input type="text" name="product_name" maxlength="10" required id="id_product_name" value="{{ product.product_name }}"></p>
+        <p>Description : <input type="text" name="product_desc" maxlength="30" id="id_product_desc" value="{{ product.product_desc }}"></p>
+        <p>Price: <input type="number" name="price" step="any" required id="id_price" value="{{ product.price }}"></p>
+        <p>Amount: <input type="number" name="amount" id="id_amount" value="{{ product.amount }}"></p>
+        <p>Category: <input type="number" name="category_id" id="id_category_id" value="{{ product.product_id }}" ></p>
+        <p>Admin_id: <input type="text" name="admin_id" maxlength="5" required id="id_admin_id" value="{{ product.admin_id }}"></p>
+        <p>Product image: <input type="file" name="product_img" accept="image/*" id="id_product_img" value="{{ product.product_img }}"></p>
+        <input type="submit" value="Upload">
+ </form>

@@ -1,0 +1,24 @@
+<style>
+  .bordered {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    border: 5px solid yellowgreen;
+  }
+</style>
+
+{% load static %}
+{% if product_info %}
+    {% for product in product_info %}
+        <div class="bordered">
+            ID : {{ product.product_id }} </br>
+            Name: {{ product.product_name }}</br>
+            Description: {{ product.product_desc }}</br>
+            Price: {{ product.price }}</br>
+            Amount: {{ product.amount }}</br>
+            Category: {{ product.category }}</br>
+            Image: <img src="../../{{ product.product_img }}" width="50px" height="50px" alt="product image">
+            <p><a href="{{ product.product_id }}">Change</a></p>
+        </div>
+    {% endfor %}
+{% endif %}

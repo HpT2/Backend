@@ -7,5 +7,4 @@ class NewProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
-        def getimg(self, img):
-            self.model['product_img'] = img
+
