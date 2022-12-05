@@ -75,12 +75,24 @@
                 </div>
 
                 <div class="header__top__right__auth">
-                  {% if user %}
-                  <a href="#"><i class="fa fa-user"></i> {{ user }}</a>
+                  {% if username %}
+                  <a class="header__top__right__auth login-homepage">
+                   <i class="fa fa-user"
+                  ></i> {{ username }}
+                  </a>
+                  <ul
+                      class="dropdown-menu dropdown-menu-end logout-homepage" aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="{% url 'service:profile' %}">My profile</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{%url 'service:logout' %}">Logout</a>
+                    </li>
+                  </ul>
                   {% else %}
                   <a href="{% url 'main:login_customer' %}"
-                    ><i class="fa fa-user"></i> Login</a
-                  >
+                  class="header__top__right__auth login-homepage"><i class="fa fa-user"></i> Login</a>
                   {% endif %}
                 </div>
               </div>
@@ -104,9 +116,11 @@
                 <li class="active">
                   <a href="{% url 'service:shop_page' %}">Shop</a>
                 </li>
+                {% if username %}
                 <li>
                   <a href="{% url 'service:cart_page' %}">Shoping Cart</a>
                 </li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -269,223 +283,30 @@
                 </div>
               </div>
             </div>
+
             <div class="row">
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-1.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-2.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
+              <!-- insert for loop here -->
+              {% for product in product_list %}
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="product__item">
+                    <div
+                      class="product__item__pic set-bg"
+                      data-setbg="../../{{product.product_img}}"
+                    >
+                      <ul class="product__item__pic__hover">
+                        <li>
+                          <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="product__item__text">
+                      <h6><a href="#">{{ product.product_name }}</a></h6>
+                      <h5>${{ product.price }}</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-3.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-4.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-5.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-6.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-7.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-8.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-9.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-10.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-11.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="../../static/img/product/product-12.jpg"
-                  >
-                    <ul class="product__item__pic__hover">
-                      <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>$30.00</h5>
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
+              <!-- endfor -->
             </div>
             <div class="product__pagination">
               <a href="#">1</a>

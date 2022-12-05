@@ -72,14 +72,23 @@
                   <a href="#"><i class="fa fa-pinterest-p"></i></a>
                 </div>
 
-                <div class="header__top__right__auth">
-                    {% if user %}
-                    <a href="#"><i class="fa fa-user"></i> {{ user }}</a>
-                    {% else %}
-                    <a href="{% url 'main:login_customer' %}"
-                      ><i class="fa fa-user"></i> Login</a
-                    >
-                    {% endif %}
+               <div class="header__top__right__auth">
+                  {% if username %}
+                  <a class="header__top__right__auth login-homepage">
+                   <i class="fa fa-user"
+                  ></i> {{ username }}
+                  </a>
+                  <ul
+                      class="dropdown-menu dropdown-menu-end logout-homepage" aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="{% url 'service:profile' %}">My profile</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{%url 'service:logout' %}">Logout</a>
+                    </li>
+                  </ul>
+                  {% endif %}
                   </div>
               </div>
             </div>

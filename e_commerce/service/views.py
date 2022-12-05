@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import connection
+from .models import Customer
+from product.models import Product
 # Create your views here.
 
 
@@ -9,17 +11,27 @@ def homepage(request):
         username = request.session['username']
     except:
         username = None
-    return render(request, 'service/homepage.html', {'user': username})
+    return render(request, 'service/homepage.html', {'username': username})
 
 
-def shop_page(request,  username=None): 
-    request.session['username'] = username
-    return render(request, 'service/shop-grid.html', {'user': username} )
+
+def shop_page(request):
+    product_list = Product.objects.all()
+    try:
+        username = request.session['username']
+    except:
+        username = None
+    return render(request, 'service/shop-grid.html', {'username': username,'product_list':product_list} )
 
 
-def cart_page(request,  username=None): 
-    request.session['username'] = username
-    return render(request, 'service/shoping-cart.html', {'user': username} )
+def cart_page(request):
+    try:
+        username = request.session['username']
+    except:
+        username = None
+    return render(request, 'service/shoping-cart.html', {'username': username} )
+
+
 
 def register(request):
     if(request.method == 'POST'):
@@ -41,3 +53,31 @@ def register(request):
             print(e)
             cursor.close()
             return HttpResponse(e)
+
+
+def profile(request):
+    username = request.session['username']
+    user = Customer.objects.get(username=username)
+    if(request.method == 'POST'):
+        address = request.POST['address']
+        Fname = request.POST['Fname']
+        Lname = request.POST['Lname']
+        Email = request.POST['email']
+        Birthdate = request.POST['Birthdate']
+        query = 'exec service.update_info @username={0}, @address="{1}", @Fname={2}, @Lname={3}, ' \
+               '@Email="{4}", @Birthdate="{5}"'.format(username,address,Fname,Lname,Email,Birthdate)
+        cursor = connection.cursor()
+        try:
+            print(query)
+            cursor.execute(query)
+            cursor.close()
+            username = request.session['username']
+        except:
+            error = 'cannot save'
+            return render(request,'service/profile.html', {'user':user,'error':error})
+    return render(request,'service/profile.html', {'user':user})
+
+
+def logout(request):
+    del request.session['username']
+    return homepage(request)

@@ -1,0 +1,14 @@
+Your username: {{ user.username }}</br>
+<form action="{% url 'service:profile' %}" method="post">
+    {% csrf_token %}
+        Your address: <input type="text" name="address" required value="{{ user.address }}"></br>
+        First name: <input type="text" name="Fname" required value="{{ user.fname }}"></br>
+        Last name: <input type="text" name="Lname" required value="{{ user.lname }}"></br>
+        Email: <input type="email" name="email" required value="{{ user.email }}"></br>
+        Birthdate: <input type="date" name="Birthdate" value="{{ user.birthdate }}"></br>
+    <input type="submit" value="save">
+</form>
+
+{% if error %}
+<h4>{{ error }}</h4>
+{% endif %}
