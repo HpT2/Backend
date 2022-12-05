@@ -24,7 +24,7 @@ class Product(models.Model):
 
 
 class Category(models.Model):
-    category_id = models.IntegerField(db_column='Category_ID')  # Field name made lowercase.
+    category_id = models.IntegerField(db_column='Category_ID',primary_key=True)  # Field name made lowercase.
     category_name = models.CharField(db_column='Category_name', max_length=10, db_collation='SQL_Latin1_General_CP1_CI_AS')  # Field name made lowercase.
     category_img = models.BinaryField(db_column='Category_img', blank=True, null=True)  # Field name made lowercase.
 

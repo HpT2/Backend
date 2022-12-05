@@ -74,9 +74,9 @@
                 </div>
 
                 <div class="header__top__right__auth">
+
                   {% if username %}
-                  <a href="{% url 'service:profile' %}"
-                   class="header__top__right__auth login-homepage">
+                  <a class="header__top__right__auth login-homepage">
                    <i class="fa fa-user"
                   ></i> {{ username }}
                   </a>
@@ -84,10 +84,10 @@
                       class="dropdown-menu dropdown-menu-end logout-homepage" aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a class="dropdown-item" href="#">My profile</a>
+                      <a class="dropdown-item" href="{% url 'service:profile' %}">My profile</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">Logout</a>
+                      <a class="dropdown-item" href="{%url 'service:logout' %}">Logout</a>
                     </li>
                   </ul>
                   {% else %}
@@ -117,9 +117,11 @@
                   <a href="{% url 'main:homepage' %}">Home</a>
                 </li>
                 <li><a href="{% url 'service:shop_page' %}">Shop</a></li>
+                {% if username %}
                 <li>
                   <a href="{% url 'service:cart_page' %}">Shoping Cart</a>
                 </li>
+                {% endif %}
               </ul>
             </nav>
           </div>

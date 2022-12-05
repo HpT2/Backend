@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import connection
 from .models import Customer
+from product.models import Product
 # Create your views here.
 
 
@@ -15,12 +16,19 @@ def homepage(request):
 
 
 def shop_page(request):
-    username = request.session['username']
-    return render(request, 'service/shop-grid.html', {'username': username} )
+    product_list = Product.objects.all()
+    try:
+        username = request.session['username']
+    except:
+        username = None
+    return render(request, 'service/shop-grid.html', {'username': username,'product_list':product_list} )
 
 
 def cart_page(request):
-    username = request.session['username']
+    try:
+        username = request.session['username']
+    except:
+        username = None
     return render(request, 'service/shoping-cart.html', {'username': username} )
 
 
@@ -50,10 +58,26 @@ def register(request):
 def profile(request):
     username = request.session['username']
     user = Customer.objects.get(username=username)
+    if(request.method == 'POST'):
+        address = request.POST['address']
+        Fname = request.POST['Fname']
+        Lname = request.POST['Lname']
+        Email = request.POST['email']
+        Birthdate = request.POST['Birthdate']
+        query = 'exec service.update_info @username={0}, @address="{1}", @Fname={2}, @Lname={3}, ' \
+               '@Email="{4}", @Birthdate="{5}"'.format(username,address,Fname,Lname,Email,Birthdate)
+        cursor = connection.cursor()
+        try:
+            print(query)
+            cursor.execute(query)
+            cursor.close()
+            username = request.session['username']
+        except:
+            error = 'cannot save'
+            return render(request,'service/profile.html', {'user':user,'error':error})
     return render(request,'service/profile.html', {'user':user})
 
 
 def logout(request):
-    if(request['username'] != None):
-        del request.session['username']
-        return HttpResponse("<strong>You are logged out.</strong>")
+    del request.session['username']
+    return homepage(request)
