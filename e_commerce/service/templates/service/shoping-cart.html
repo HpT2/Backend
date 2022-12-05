@@ -72,14 +72,14 @@
                   <a href="#"><i class="fa fa-pinterest-p"></i></a>
                 </div>
 
-                <div class="header__top__right__auth">
-                    {% if user %}
-                    <a href="#"><i class="fa fa-user"></i> {{ user }}</a>
-                    {% else %}
-                    <a href="{% url 'main:login_customer' %}"
-                      ><i class="fa fa-user"></i> Login</a
-                    >
-                    {% endif %}
+               <div class="header__top__right__auth">
+                  {% if username %}
+                  <a href="{% url 'service:profile' %}"><i class="fa fa-user"></i> {{ username }}</a>
+                  {% else %}
+                  <a href="{% url 'main:login_customer' %}"
+                    ><i class="fa fa-user"></i> Login</a
+                  >
+                  {% endif %}
                   </div>
               </div>
             </div>

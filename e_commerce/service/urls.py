@@ -4,7 +4,6 @@ app_name = 'service'
 urlpatterns = [
     path('', views.homepage, name='homepage'),
 
-    path('/register', views.register, name="register"),
     path('profile',views.profile, name='profile'),
 
     path('register', views.register, name="register"),

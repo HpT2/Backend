@@ -75,26 +75,26 @@
 
                 <div class="header__top__right__auth">
                   {% if username %}
-                  <a href="{% url 'service:profile' %}"  class="header__top__right__auth login-homepage"><i class="fa fa-user"
-                  ></i> {{ username }}</a>
+                  <a href="{% url 'service:profile' %}"
+                   class="header__top__right__auth login-homepage">
+                   <i class="fa fa-user"
+                  ></i> {{ username }}
+                  </a>
                   <ul
-                      class="dropdown-menu dropdown-menu-end logout-homepage"
-                      aria-labelledby="navbarDropdownMenuLink"
-
-                    >
+                      class="dropdown-menu dropdown-menu-end logout-homepage" aria-labelledby="navbarDropdownMenuLink"
+                  >
                     <li>
                       <a class="dropdown-item" href="#">My profile</a>
                     </li>
-
                     <li>
                       <a class="dropdown-item" href="#">Logout</a>
                     </li>
                   </ul>
                   {% else %}
                   <a href="{% url 'main:login_customer' %}"
-                  class="header__top__right__auth login-homepage"><i class="fa fa-user"></i> Login</a
-                  >
+                  class="header__top__right__auth login-homepage"><i class="fa fa-user"></i> Login</a>
                   {% endif %}
+
                 </div>
               </div>
             </div>

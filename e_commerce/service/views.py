@@ -16,17 +16,13 @@ def homepage(request):
 
 def shop_page(request):
     username = request.session['username']
-    return render(request, 'service/shop-grid.html', {'user': username} )
+    return render(request, 'service/shop-grid.html', {'username': username} )
 
 
 def cart_page(request):
     username = request.session['username']
-    return render(request, 'service/shoping-cart.html', {'user': username} )
+    return render(request, 'service/shoping-cart.html', {'username': username} )
 
-
-def cart_page(request,  username=None): 
-    request.session['username'] = username
-    return render(request, 'service/shoping-cart.html', {'user': username})
 
 
 def register(request):
