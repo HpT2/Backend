@@ -581,7 +581,11 @@ ol {
     display: block;
     top: 32px;
   }
-  
+  .dropdown-item.active, .dropdown-item:active {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #ededed;
+}
 /*---------------------
   Hero
 -----------------------*/
