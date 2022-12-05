@@ -26,7 +26,8 @@ def home(request):
             cursor.close()
             return HttpResponse("No user")
         cursor.close()
-        return homepage(request, username)
+        request.session['username'] = username
+        return homepage(request)
     else:
         return homepage(request)
 
@@ -55,6 +56,7 @@ def login_admin_res(request):
             cursor.close()
             return HttpResponse("No user")
         cursor.close()
-        return admin_home(request,username)
+        request.session['username'] = username
+        return admin_home(request)
     else:
         return HttpResponse("You have not login")
