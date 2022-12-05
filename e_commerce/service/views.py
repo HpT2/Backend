@@ -19,9 +19,16 @@ def shop_page(request):
     return render(request, 'service/shop-grid.html', {'user': username} )
 
 
+<<<<<<< Updated upstream
 def cart_page(request):
     username = request.session['username']
     return render(request, 'service/shoping-cart.html', {'user': username} )
+=======
+def cart_page(request,  username=None): 
+    request.session['username'] = username
+    return render(request, 'service/shoping-cart.html', {'user': username})
+
+>>>>>>> Stashed changes
 
 def register(request):
     if(request.method == 'POST'):
