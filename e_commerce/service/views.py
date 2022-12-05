@@ -4,8 +4,11 @@ from django.db import connection
 # Create your views here.
 
 
-def homepage(request, username=None):
-    request.session['username'] = username
+def homepage(request):
+    try:
+        username = request.session['username']
+    except:
+        username = None
     return render(request, 'service/homepage.html', {'user': username})
 
 
