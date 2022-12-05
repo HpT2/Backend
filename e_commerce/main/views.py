@@ -41,6 +41,7 @@ def login_admin(request):
     return render(request, 'main/login_admin.html', {'form': form})
 
 
+
 def login_admin_res(request):
     if(request.method == 'POST'):
         username = request.POST['username']
