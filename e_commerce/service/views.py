@@ -9,6 +9,15 @@ def homepage(request, username=None):
     return render(request, 'service/homepage.html', {'user': username})
 
 
+def shop_page(request,  username=None): 
+    request.session['username'] = username
+    return render(request, 'service/shop-grid.html', {'user': username} )
+
+
+def cart_page(request,  username=None): 
+    request.session['username'] = username
+    return render(request, 'service/shoping-cart.html', {'user': username} )
+
 def register(request):
     if(request.method == 'POST'):
         username = request.POST['username']
