@@ -74,13 +74,9 @@
                 </div>
 
                 <div class="header__top__right__auth">
-<<<<<<< Updated upstream
                   {% if username %}
                   <a href="{% url 'service:profile' %}"  class="header__top__right__auth login-homepage"><i class="fa fa-user"
                   ></i> {{ username }}</a>
-=======
-                  {% if user %}
-                  <a href="#"><i class="fa fa-user"></i> {{ user }}</a>
                   <ul
                       class="dropdown-menu dropdown-menu-end logout-homepage"
                       aria-labelledby="navbarDropdownMenuLink"
@@ -94,7 +90,6 @@
                       <a class="dropdown-item" href="#">Logout</a>
                     </li>
                   </ul>
->>>>>>> Stashed changes
                   {% else %}
                   <a href="{% url 'main:login_customer' %}"
                   class="header__top__right__auth login-homepage"><i class="fa fa-user"></i> Login</a
