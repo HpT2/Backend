@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.db import connection
+from .models import Customer
 # Create your views here.
 
 
@@ -9,16 +10,17 @@ def homepage(request):
         username = request.session['username']
     except:
         username = None
-    return render(request, 'service/homepage.html', {'user': username})
+    return render(request, 'service/homepage.html', {'username': username})
 
 
-def shop_page(request,  username=None): 
-    request.session['username'] = username
+
+def shop_page(request):
+    username = request.session['username']
     return render(request, 'service/shop-grid.html', {'user': username} )
 
 
-def cart_page(request,  username=None): 
-    request.session['username'] = username
+def cart_page(request):
+    username = request.session['username']
     return render(request, 'service/shoping-cart.html', {'user': username} )
 
 def register(request):
@@ -41,3 +43,15 @@ def register(request):
             print(e)
             cursor.close()
             return HttpResponse(e)
+
+
+def profile(request):
+    username = request.session['username']
+    user = Customer.objects.get(username=username)
+    return render(request,'service/profile.html', {'user':user})
+
+
+def logout(request):
+    if(request['username'] != None):
+        del request.session['username']
+        return HttpResponse("<strong>You are logged out.</strong>")

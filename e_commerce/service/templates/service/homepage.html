@@ -74,11 +74,12 @@
                 </div>
 
                 <div class="header__top__right__auth">
-                  {% if user %}
-                  <a href="#"><i class="fa fa-user"></i> {{ user }}</a>
+                  {% if username %}
+                  <a href="{% url 'service:profile' %}"  class="header__top__right__auth login-homepage"><i class="fa fa-user"
+                  ></i> {{ username }}</a>
                   {% else %}
                   <a href="{% url 'main:login_customer' %}"
-                    ><i class="fa fa-user"></i> Login</a
+                  class="header__top__right__auth login-homepage"><i class="fa fa-user"></i> Login</a
                   >
                   {% endif %}
                 </div>

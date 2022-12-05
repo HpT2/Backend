@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import LoginForm
+from service.models import Customer
 from django.db import connection
 from service.views import homepage
 from management.views import admin_home
