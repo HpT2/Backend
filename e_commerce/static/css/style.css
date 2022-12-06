@@ -560,6 +560,7 @@ ol {
 .header__top__right__auth .login-homepage:hover + .dropdown-menu {
 	position: absolute;
     display: block;
+	left: -68px;
     top: 32px;
 }
 
