@@ -556,14 +556,21 @@ ol {
 .humberger__open {
 	display: none;
 }
+
 .header__top__right__auth .login-homepage:hover + .dropdown-menu {
 	position: absolute;
-    left: -104px;
     display: block;
     top: 32px;
 }
 
 
+  .dropdown-menu:hover {
+	position: absolute;
+	left: -68px;
+    display: block;
+    top: 32px;
+  }
+  
 .dropdown-menu::before {
 	content: "";
 	height: 17px;
@@ -574,12 +581,6 @@ ol {
 	left: 0px;
 	border-bottom: solid 1px #ccc;
 	  
-  }
-  .dropdown-menu:hover {
-	position: absolute;
-    left: -104px;
-    display: block;
-    top: 32px;
   }
   .dropdown-item.active, .dropdown-item:active {
     color: #16181b;
