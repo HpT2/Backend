@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
-from .models import Customer, Cart, Contain
+from .models import Customer, Cart, Contain, Orders
 from product.models import Product, Category
 import random
 # Create your views here.
@@ -19,6 +19,12 @@ def homepage(request):
 def shop_page(request):
     product_list = Product.objects.all()
     category_list = Category.objects.all()
+    if(request.method == 'POST'):
+        cart_id = request.POST['cart_id']
+        query = 'delete service.contain\n where cart_id={0}'.format(cart_id)
+        cursor = connection.cursor()
+        cursor.execute(query)
+        cursor.close()
     try:
         username = request.session['username']
     except:
@@ -31,7 +37,7 @@ def cart_page(request):
     keys = []
     values = []
     if(request.method == 'POST'):
-        for key,value in request.POST.items():
+        for key, value in request.POST.items():
             if key == 'Update_cart':
                 break
             keys.append(key)
@@ -41,15 +47,24 @@ def cart_page(request):
         username = request.session['username']
         user = Customer.objects.get(username=username)
         cart = Cart.objects.get(customer_id=user.customer_id)
-        if (len(keys) > 1):
-            product_ids = []
-            x = 1
-            while x < len(keys):
-                if(keys[x]=='Add_to_cart'):
-                    x+=1
-                    continue
-                product_ids.append(int(keys[x].split('product_')[1]))
-                x += 1
+        if 'Cancel_order' in request.POST:
+            order_id = request.POST['order_id']
+            query = "delete from service.orders \nwhere order_id='{0}'".format(order_id)
+            print(query)
+            cursor = connection.cursor()
+            cursor.execute(query)
+            cursor.close()
+
+        else:
+            if(len(keys) > 1):
+                product_ids = []
+                x = 1
+                while x < len(keys):
+                    if(keys[x]=='Add_to_cart'):
+                        x+=1
+                        continue
+                    product_ids.append(int(keys[x].split('product_')[1]))
+                    x += 1
         if 'Add_to_cart' in request.POST:
             for i in range(len(product_ids)):
                 query = 'exec service.add_to_cart @cart_id = {0}, @product_id={1}'.format(cart.cart_id,product_ids[i])
@@ -165,3 +180,21 @@ def profile(request):
 def logout(request):
     del request.session['username']
     return homepage(request)
+
+def checkout(request):
+    username = request.session['username']
+    user = Customer.objects.get(username=username)
+    cart = Cart.objects.get(customer_id=user.customer_id)
+    order_id = username[:4]+ str(cart.cart_id)[:2]
+    query = 'exec service.create_order @cart_id={0}, @Order_id="{1}", @total_price={2}'\
+        .format(cart.cart_id, order_id, cart.total_price)
+    print(query)
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query)
+    except Exception as e:
+        print(e)
+        pass
+    cursor.close()
+    order = Orders.objects.get(order_id=order_id)
+    return render(request, 'service/checkout.html', {'user': user,'order':order})
