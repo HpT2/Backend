@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db import connection
 from .models import Customer, Cart, Contain
 from product.models import Product, Category
+import random
 # Create your views here.
 
 
@@ -120,8 +121,12 @@ def register(request):
         Email = request.POST['Email']
         Phone = '09714799331'
         Address = 'sdsadasdad'
+        id = random.randint(0, 999)
+        id = username[:2]+str(id)
+        print(id)
         query = 'exec service.register @Fname="{0}", @Lname="{1}", @username="{2}", @password="{3}", ' \
-                '@Email="{4}", @Phone="{5}", @Address="{6}"'.format(Fname,Lname,username,password,Email,Phone,Address)
+                '@Email="{4}", @Phone="{5}", @Address="{6}", @id="{7}"'\
+            .format(Fname,Lname,username,password,Email,Phone,Address,id)
         cursor = connection.cursor()
         try:
             cursor.execute(query)
