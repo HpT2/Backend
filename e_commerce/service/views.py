@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
-from .models import Customer
-from product.models import Product
+from .models import Customer, Cart, Contain
+from product.models import Product, Category
 # Create your views here.
 
 
@@ -17,19 +17,41 @@ def homepage(request):
 
 def shop_page(request):
     product_list = Product.objects.all()
+    category_list = Category.objects.all()
     try:
         username = request.session['username']
     except:
         username = None
-    return render(request, 'service/shop-grid.html', {'username': username,'product_list':product_list} )
+    return render(request, 'service/shop-grid.html', {'username': username, 'product_list': product_list,
+                                                      'category_list': category_list, })
 
 
 def cart_page(request):
+    category_list = Category.objects.all()
     try:
         username = request.session['username']
-    except:
+        user = Customer.objects.get(username=username)
+        cart = Cart.objects.get(customer_id=user.customer_id)
+        query = 'exec service.get_cart @cart_id ="{0}"'.format(cart.cart_id)
+        cursor = connection.cursor()
+        product_object_list = []
+        try:
+            cursor.execute(query)
+            product_list_id = cursor.fetchall()
+            for id in product_list_id:
+                id = str(id)
+                id = id.split(",")[0]
+                id = id.split("(")[1]
+                product_object_list.append(Product.objects.get(product_id=id))
+            print(product_object_list)
+            cursor.close
+        except Exception as e:
+            product_list = None
+            cursor.close()
+    except Exception as e:
         username = None
-    return render(request, 'service/shoping-cart.html', {'username': username} )
+    return render(request, 'service/shoping-cart.html', {'username': username, 'category_list':category_list,
+                                                         'product_list': product_object_list, 'cart':cart})
 
 
 
@@ -48,7 +70,8 @@ def register(request):
         try:
             cursor.execute(query)
             cursor.close()
-            return HttpResponse("Register success")
+            request.session['username'] = username
+            return homepage(request)
         except Exception as e:
             print(e)
             cursor.close()
