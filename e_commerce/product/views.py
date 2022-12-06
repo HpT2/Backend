@@ -24,21 +24,10 @@ def postnewproduct(request):
 
 def newproduct(request):
     if(request.method == 'POST'):
-        data = NewProductForm(request.POST)
+        data = NewProductForm(data=request.POST, files=request.FILES)
         if(data.is_valid()):
-            p_data = data.cleaned_data
-            try:
-                cursor = connection.cursor()
-                query = 'EXEC product.insert_product @product_id={0}, @product_name={1},' \
-                        '@product_desc={2}, @price={3},@amount={4}, @category_id={5},' \
-                        '@admin_id={6},@product_img={7}'.format(p_data['product_id'],
-                                                                        p_data['product_name'], p_data['product_desc'],
-                                                                        p_data['price'],p_data['amount'], p_data['category_id'],
-                                                                        p_data['admin_id'], p_data['product_img'])
-                cursor.execute(query)
-                return HttpResponse('ok')
-            except Exception as e:
-                return HttpResponse(e)
+           data.save()
+           return postnewproduct(request)
         else:
             return HttpResponse('Notvalid')
 

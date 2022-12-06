@@ -18,10 +18,10 @@ class Product(models.Model):
     admin_id = models.CharField(db_column='Admin_ID', max_length=5, db_collation='SQL_Latin1_General_CP1_CI_AS')  # Field name made lowercase.
     product_img = models.ImageField(db_column='Product_IMG', blank=True, upload_to='static/img/product')
 
-    def __int__(self,img,name,price):
-        self.price=price
-        self.product_name=name
-        self.product_img=img
+    def __int__(self, img, name, price):
+        self.price = price
+        self.product_name = name
+        self.product_img = img
 
     class Meta:
         managed = False

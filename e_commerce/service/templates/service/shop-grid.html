@@ -271,8 +271,11 @@
               </div>
             </div>
 
-            <div class="row">
+
               <!-- insert for loop here -->
+              <form action="{% url 'service:cart_page'%}" method = 'post'>
+                {% csrf_token %}
+                <div class="row">
               {% for product in product_list %}
                 <div class="col-lg-4 col-md-6 col-sm-6">
                   <div class="product__item">
@@ -282,7 +285,8 @@
                     >
                       <ul class="product__item__pic__hover">
                         <li>
-                          <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                          <input type="radio" name ="product_{{ product.product_id }}" value="1" >
+                          <i class="fa fa-shopping-cart"></i>
                         </li>
                       </ul>
                     </div>
@@ -293,8 +297,10 @@
                   </div>
                 </div>
               {% endfor %}
+                <input type="submit" value="Add to cart" name="Add_to_cart">
+              </div>
+              </form>
               <!-- endfor -->
-            </div>
             <div class="product__pagination">
               <a href="#">1</a>
               <a href="#">2</a>
