@@ -35,7 +35,21 @@
             .btn-success {
                width:102px
             }
+            .dropdown-item:focus, .dropdown-item:hover {
+               color: #16181b;
+               text-decoration: none;
+               background-color: #fff;
+               }
+               .dropdown-item.active, .dropdown-item:active {
+               color: #16181b;
+               text-decoration: none;
+               background-color: #fff;
+               }
+               .dropdown-item {
+               font-size: 14px
+               }
       </style>
+     
       <title>Document</title>
    </head>
    <body>
@@ -127,7 +141,7 @@
          <div class="position-sticky">
             <div class="list-group list-group-flush  mt-4">
                <a
-                  href="./dashboard.html"
+                  href="#"
                   class="list-group-item list-group-item-action py-2 ripple"
                   aria-current="true"
                   >
@@ -142,12 +156,12 @@
                <span>Product</span>
                </a>
                <a
-                  href="/product_manage.html"
+                  href="{% url 'product:Add' %}"
                   class="list-group-item list-group-item-action py-2 ripple"
                   ><i class="fa-solid fa-cart-plus me-3"></i></i><span>Add Product</span></a
                   >
                <a
-                  href="/category_manage.html"
+                  href="#"
                   class="list-group-item list-group-item-action py-2 ripple"
                   ><i class="fa-solid fa-list me-3"></i><span>Categories</span></a
                   >
@@ -197,12 +211,12 @@
               {% endif %}
                
             </div>
-            <div class="product__pagination">
+            {% comment %} <div class="product__pagination">
                <a href="#">1</a>
                <a href="#">2</a>
                <a href="#">3</a>
                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-            </div>
+            </div> {% endcomment %}
          </div>
          <div class="container">
       </section>
@@ -225,53 +239,23 @@
                />
             </a>
             <!-- Right links -->
-            <ul class="navbar-nav ms-auto d-flex flex-row justify-content-center">
+            <ul class="navbar-nav ms-auto d-flex flex-row">
                <!-- Notification dropdown -->
-               <li class="nav-item dropdown">
-                  <!-- Avatar -->
-               </li>
-               <li class="nav-item dropdown">
-                 <a
-                   class=" dropdown-menu-js nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
-                   href="#"
-                   id="navbarDropdownMenuLink"
-                   role="button"
-                   data-mdb-toggle="dropdown"
-                   aria-expanded="false"
-                 >
-                   <img
-                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                     class="rounded-circle me-2"
-                     height="32"
-                     alt="Avatar"
-                     loading="lazy"
+               <img
+                   src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                   class="rounded-circle me-2"
+                   height="32"
+                   alt="Avatar"
+                   loading="lazy"
                    />
-                 </a>
-                 <ul
-                   class="dropdown-menu dropdown-menu-end dropdown-display"
-                   aria-labelledby="navbarDropdownMenuLink"
-                 >
-                   <li>
-                     <a class="dropdown-item" href="#">My profile</a>
-                   </li>
-   
-                   <li>
-                     <a class="dropdown-item" href="#">Logout</a>
-                   </li>
-                 </ul>
-               </li>
-            </ul>
+               <a class="dropdown-item px-1" href="{% url 'main:login_customer' %}">Logout</a>
+           </ul>
          </div>
          <!-- Container wrapper -->
       </nav>
       <!-- Navbar -->
    </header>
    <!--Main Navigation-->
-   <!--Main layout-->
-   <main style="margin-top: 58px">
-      <div class="container pt-4"></div>
-   </main>
-   <!--Main layout-->
 
 
 </body>

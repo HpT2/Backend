@@ -97,46 +97,41 @@
              
          </div>
          <div class="col-6 container-profile mt-5 pt-5 pl-0">
-       <form action="{% url 'product:posted' %}" method="post" enctype="multipart/form-data">
+       <form action="#" method="post">
               {% csrf_token %}
-             
+    
               <div class="form-row ">
                  <div class="form-group col-md-6">
-                     <label for="id">Product ID</label>
-                     <input type="id" class="form-control" id="id"  required value="">
-                 </div>
+                     <label for="id_product_id">Product ID</label>
+                     <input type="number" name="product_id" required id="id_product_id" value="{{ product.product_id }}">                 </div>
                  <div class="form-group col-md-6">
-                     <label for="category-id">Category ID</label>
-                     <input type="number" class="form-control" id="category-id" required value="">
+                     <label for="id_category_id">Category ID</label>
+                     <input type="number" name="category_id" id="id_category_id" value="{{ product.product_id }}" >
                  </div>
               </div>
                  <div class="form-group">
               <div class="form-group">
-                     <label for="name">Product Name</label>
-                     <input type="text" class="form-control" id="name"  required value="">
-               </div>
+                     <label for="id_product_name">Product Name</label>
+                     <input type="text" name="product_name" maxlength="10" required id="id_product_name" value="{{ product.product_name }}">               </div>
                         <div class="form-group">
-                     <label for="desc">Product Description</label>
-                     <input type="text" class="form-control" id="desc" required value="">
-                 </div>
+                     <label for="id_product_desc">Product Description</label>
+                     <input type="text" name="product_desc" maxlength="30" id="id_product_desc" value="{{ product.product_desc }}">                 </div>
                  <div class="form-row">
                      <div class="form-group col-md-6">
-                         <label for="price">Price</label>
-                         <input type="text" class="form-control" id="price"  required value="{{ user.fname }}">
-                     </div>
+                         <label for="id_price">Price</label>
+                         <input type="number" name="price" step="any" required id="id_price" value="{{ product.price }}">                     </div>
                      <div class="form-group col-md-6">
-                         <label for="amount">Amount</label>
-                         <input type="number" class="form-control" id="amount" required value="">
-                     </div>
+                         <label for="id_amount">Amount</label>
+                         <input type="number" name="amount" id="id_amount" value="{{ product.amount }}">                     </div>
                  </div>
                  
                  <div class="form-group">
-                     <label for="adminid">Admin ID</label>
-                     <input type="text" class="form-control" id="adminid"    value="">
+                     <label for="id_admin_id">Admin ID</label>
+                     <input type="text" name="admin_id" maxlength="5" required id="id_admin_id" value="{{ product.admin_id }}">
                  </div>
                  <div class="form-group">
-                     <label for="image">Image</label>
-                     <input type="file" class="form-control" id="image"    value="">
+                     <label for="id_product_img">Image</label>
+                     <input type="file" name="product_img" accept="image/*" id="id_product_img" value="{{ product.product_img }}">
                  </div>
                  <div class="text-center text-lg-start mt-4">
                      <input class="btn btn-primary" type="submit" value="Upload">

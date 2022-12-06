@@ -19,6 +19,21 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/sidebars.css" />
+    <style>
+      .dropdown-item:focus, .dropdown-item:hover {
+        color: #16181b;
+        text-decoration: none;
+        background-color: #fff;
+        }
+        .dropdown-item.active, .dropdown-item:active {
+        color: #16181b;
+        text-decoration: none;
+        background-color: #fff;
+        }
+        .dropdown-item {
+        font-size: 14px
+        }
+    </style>
     <title>Document</title>
   </head>
   <body>
@@ -32,7 +47,7 @@
         <div class="position-sticky">
           <div class="list-group list-group-flush mx-2 mt-4">
             <a
-              href="./dashboard.html"
+              href="#"
               class="list-group-item list-group-item-action py-2 ripple"
               aria-current="true"
             >
@@ -84,41 +99,15 @@
           <!-- Right links -->
           <ul class="navbar-nav ms-auto d-flex flex-row">
             <!-- Notification dropdown -->
-            <li class="nav-item dropdown">
-              <!-- Avatar -->
-            </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class=" dropdown-menu-js nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                  class="rounded-circle me-2"
-                  height="32"
-                  alt="Avatar"
-                  loading="lazy"
+            <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                class="rounded-circle me-2"
+                height="32"
+                alt="Avatar"
+                loading="lazy"
                 />
-              </a>
-              <ul
-                class="dropdown-menu dropdown-menu-end dropdown-display"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <a class="dropdown-item" href="#">My profile</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item" href="#">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+            <a class="dropdown-item px-1" href="{% url 'main:login_customer' %}">Logout</a>
+        </ul>
         </div>
         <!-- Container wrapper -->
       </nav>
