@@ -125,17 +125,17 @@
                     <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor" required value="{{ user.address }}">
                 </div>
                 <div class="form-group">
-                    <label for="birthday">Address</label>
+                    <label for="birthday">Birthday</label>
                     <input type="date" class="form-control" id="birthday" placeholder="01/01/2002"   value="{{ user.birthdate }}">
                 </div>
                 <div class="text-center text-lg-start mt-4">
-                  <button class="btn btn-primary" type="submit" value="save">Save</button>
+                  <input class="btn btn-primary" type="submit" value="Save"></input>
                   
                 </div>
             </form>
             {% if error %}
-        <h4>{{ error }}</h4>
-        {% endif %}
+            <h4>{{ error }}</h4>
+            {% endif %}
           </div>
         </div>
         
