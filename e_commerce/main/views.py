@@ -20,10 +20,9 @@ def home(request):
         cursor = connection.cursor()
         query = 'exec  [service].[authentication] @username="{0}", @password="{1}"' \
             .format(username, password)
-        print(query)
-        cursor.execute(query)
-        res = cursor.fetchall()
-        if (len(res) == 0):
+        try:
+            cursor.execute(query)
+        except Exception as e:
             cursor.close()
             return HttpResponse("No user")
         cursor.close()
