@@ -81,10 +81,15 @@
               {% else %}
                     <a
               href="{% url 'product:Add' %}"
-              class="list-group-item list-group-item-action py-2 ripple  active"
+              class="list-group-item list-group-item-action py-2 ripple active"
               ><i class="fa-solid fa-cart-plus me-3"></i></i><span>Add Product</span></a
             >
               {% endif %}
+              <a
+                  href="{% url 'product:category' %}"
+                  class="list-group-item list-group-item-action py-2 ripple"
+                  ><i class="fa-solid fa-list me-3"></i><span>Categories</span></a
+                  >
           </div>
         </div>
       </nav>
@@ -107,40 +112,40 @@
                      <input type="hidden" name="product_id" value="{{ product.product_id }}">
                  </div>
                  <div class="form-group col-md-6">
-                     <label for="category-id">Category ID</label>
-                     <input type="number" class="form-control" id="category-id" name="category_id" required value="{{ product.category_id }}">
+                     <label for="iid">Category ID</label>
+                     <input type="number" class="form-control" id="iid" name="category_id" required value="{{ product.category_id }}">
                  </div>
               </div>
                  <div class="form-group">
                       <div class="form-group">
-                             <label for="name">Product Name</label>
-                             <input type="text" class="form-control" id="name" name="product_name" required value="{{ product.product_name }}">
+                             <label for="n">Product Name</label>
+                             <input type="text" class="form-control" id="n" name="product_name" required value="{{ product.product_name }}">
                       </div>
                       <div class="form-group">
-                             <label for="desc">Product Description</label>
-                             <input type="text" class="form-control" id="desc" name="product_desc" required value="{{ product.product_desc }}">
+                             <label for="des">Product Description</label>
+                             <input type="text" class="form-control" id="des" name="product_desc" required value="{{ product.product_desc }}">
                       </div>
                      <div class="form-row">
                              <div class="form-group col-md-6">
-                                 <label for="price">Price</label>
-                                 <input type="text" class="form-control" id="price" name="price" required value="{{ product.price }}">
+                                 <label for="pric">Price</label>
+                                 <input type="text" class="form-control" id="pric" name="price" required value="{{ product.price }}">
                              </div>
                          <div class="form-group col-md-6">
-                             <label for="amount">Amount</label>
-                             <input type="number" class="form-control" id="amount" name="amount" required value="{{ product.amount }}">
+                             <label for="amout">Amount</label>
+                             <input type="number" class="form-control" id="amout" name="amount" required value="{{ product.amount }}">
                          </div>
                      </div>
 
                      <div class="form-group">
-                         <label for="adminid">Admin ID</label>
-                         <input type="text" class="form-control" id="adminid"  name="admin_id"  value="{{ product.admin_id }}">
+                         <label for="adid">Admin ID</label>
+                         <input type="text" class="form-control" id="adid"  name="admin_id"  value="{{ product.admin_id }}">
                      </div>
                  <div class="form-group">
-                     <label for="image">Image</label>
-                     <input type="file" class="form-control" id="image" name="product_img"   value="{{ product.product_img }}">
+                     <label for="im">Image</label>
+                     <input type="file" class="form-control" id="im" name="product_img"   value="{{ product.product_img }}">
                  </div>
                  <div class="text-center text-lg-start mt-4">
-                     <input class="btn btn-primary" type="submit" value="Edit">
+                     <input class="btn btn-primary" type="submit" name="Edit" value="Edit">
                  </div>
                      </div>
        </form>
