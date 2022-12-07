@@ -1,24 +1,198 @@
-<style>
-  .bordered {
-    width: 200px;
-    height: 200px;
-    padding: 20px;
-    border: 5px solid yellowgreen;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- CSS only -->
+         {% load static %}
+         <!-- Css Styles -->
+         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 
-{% load static %}
-{% if product_info %}
-    {% for product in product_info %}
-        <div class="bordered">
-            ID : {{ product.product_id }} </br>
-            Name: {{ product.product_name }}</br>
-            Description: {{ product.product_desc }}</br>
-            Price: {{ product.price }}</br>
-            Amount: {{ product.amount }}</br>
-            Category: {{ product.category }}</br>
-            Image: <img src="../../{{ product.product_img }}" width="50px" height="50px" alt="product image">
-            <p><a href="{{ product.product_id }}">Change</a></p>
-        </div>
-    {% endfor %}
-{% endif %}
+         <link
+           rel="stylesheet"
+           href="{% static 'fonts/fontawesome-free-6.2.1-web/css/all.min.css' %}"
+           type="text/css"
+         />
+         <link
+           rel="stylesheet"
+           href="{% static 'css/style.css' %}"
+           type="text/css"
+         />
+         <link
+         rel="stylesheet"
+         href="{% static 'css/sidebars.css' %}"
+         type="text/css"
+       />
+       <style>
+            .product__item__pic {
+               width: 385.75px;
+
+            }
+            .btn {
+               margin: 0 6px;
+            }
+            .btn-success {
+               width:102px
+            }
+            .dropdown-item:focus, .dropdown-item:hover {
+               color: #16181b;
+               text-decoration: none;
+               background-color: #fff;
+               }
+               .dropdown-item.active, .dropdown-item:active {
+               color: #16181b;
+               text-decoration: none;
+               background-color: #fff;
+               }
+               .dropdown-item {
+               font-size: 14px
+               }
+      </style>
+
+      <title>Document</title>
+   </head>
+   <body>
+   <!--Main Navigation-->
+   <header style="position: relative;">
+      <!-- Sidebar -->
+      <nav
+         id="sidebarMenu"
+         class="collapse d-lg-block sidebar collapse bg-white mt-0"
+         >
+         <div class="position-sticky">
+            <div class="list-group list-group-flush  mt-4">
+               <a
+                  href="#"
+                  class="list-group-item list-group-item-action py-2 ripple"
+                  aria-current="true"
+                  >
+               <i class="fa-solid fa-gauge-high me-3 "></i>
+               <span>Main dashboard</span>
+               </a>
+               <a
+                  href="#"
+                  class="list-group-item list-group-item-action py-2 ripple active"
+                  >
+               <i class="fa-solid fa-cart-shopping me-3"></i>
+               <span>Product</span>
+               </a>
+               <a
+                  href="{% url 'product:Add' %}"
+                  class="list-group-item list-group-item-action py-2 ripple"
+                  ><i class="fa-solid fa-cart-plus me-3"></i></i><span>Add Product</span></a
+                  >
+            </div>
+         </div>
+      </nav>
+      <!-- Sidebar -->
+
+
+      <!-- Content -->
+      <section class="product spad">
+         <div class="container-fluid">
+            <div class="row">
+               {% if product_info %}
+               {% for product in product_info %}
+               <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
+                  <div class="product__item">
+                     <div
+                        class="product__item__pic set-bg"
+                        style="background-size:initial"
+                        data-setbg="../../{{ product.product_img }}"                          >
+                        <ul class="product__item__pic__hover ">
+                           <li class="d-flex flex-row justify-content-center">
+                               <form action="{% url 'product:Edit_form'%}" method="post">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="product_id" value="{{ product.product_id }}">
+                              <button
+                                 type="submit"
+                                 class="btn btn-success"
+                                 name="Edit"
+                                 >
+                              <i class="fa-solid fa-pen-to-square"></i>
+                              Edit
+                                 </button>
+                               </form>
+                              <form action="{% url 'product:remove' %}" method="post">
+                                 {% csrf_token %}
+                                  <input type="hidden" name="product_id" value="{{ product.product_id }}">
+                              <button type="submit"
+                                      class="btn btn-danger"
+                              >
+                                 Remove
+                               </button>
+                                 </form>
+
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="product__item__text">
+                        <h6><a href="#">{{ product.product_name }}</a></h6>
+                        <h5>{{ product.price }}</h5>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+              {% endif %}
+
+            </div>
+            {% comment %} <div class="product__pagination">
+               <a href="#">1</a>
+               <a href="#">2</a>
+               <a href="#">3</a>
+               <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+            </div> {% endcomment %}
+         </div>
+         <div class="container">
+      </section>
+      <!-- Content -->
+      <!-- Navbar -->
+      <nav
+         id="main-navbar"
+         class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+         >
+         <!-- Container wrapper -->
+         <div class="container-fluid">
+            <!-- Toggle button -->
+            <!-- Brand -->
+            <a class="navbar-brand ml-2" href="#">
+            <img
+               src="{% static 'img/logo.png' %}"
+               height="40"
+               alt="MDB Logo"
+               loading="lazy"
+               />
+            </a>
+            <!-- Right links -->
+            <ul class="navbar-nav ms-auto d-flex flex-row">
+               <!-- Notification dropdown -->
+               <img
+                   src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                   class="rounded-circle me-2"
+                   height="32"
+                   alt="Avatar"
+                   loading="lazy"
+                   />
+               <a class="dropdown-item px-1" href="{% url 'main:login_customer' %}">Logout</a>
+           </ul>
+         </div>
+         <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+   </header>
+   <!--Main Navigation-->
+
+
+</body>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/mixitup.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</html>
+
+   <!-- Modal -->

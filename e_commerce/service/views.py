@@ -167,7 +167,7 @@ def profile(request):
         Fname = request.POST['Fname']
         Lname = request.POST['Lname']
         Email = request.POST['email']
-        Birthdate = request.POST['Birthdate']
+        Birthdate = request.POST['birthdate']
         query = 'exec service.update_info @username={0}, @address="{1}", @Fname={2}, @Lname={3}, ' \
                '@Email="{4}", @Birthdate="{5}"'.format(username,address,Fname,Lname,Email,Birthdate)
         cursor = connection.cursor()
@@ -179,6 +179,7 @@ def profile(request):
         except:
             error = 'cannot save'
             return render(request,'service/profile.html', {'user':user,'error':error})
+        user = Customer.objects.get(username=username)
     return render(request,'service/profile.html', {'user':user})
 
 
