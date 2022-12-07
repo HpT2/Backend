@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
-from .models import Customer, Cart, Contain
+from .models import Customer, Cart, Contain, Orders
 from product.models import Product, Category
 import random
+from datetime import date
 # Create your views here.
 
 
@@ -19,6 +20,16 @@ def homepage(request):
 def shop_page(request):
     product_list = Product.objects.all()
     category_list = Category.objects.all()
+    if(request.method == 'POST'):
+        cart_id = request.POST['cart_id']
+        try:
+            query = 'delete service.contain\n where cart_id={0}'.format(cart_id)
+            print(query)
+            cursor = connection.cursor()
+            cursor.execute(query)
+            cursor.close()
+        except Exception as e:
+            return HttpResponse(e)
     try:
         username = request.session['username']
     except:
@@ -31,7 +42,7 @@ def cart_page(request):
     keys = []
     values = []
     if(request.method == 'POST'):
-        for key,value in request.POST.items():
+        for key, value in request.POST.items():
             if key == 'Update_cart':
                 break
             keys.append(key)
@@ -41,15 +52,24 @@ def cart_page(request):
         username = request.session['username']
         user = Customer.objects.get(username=username)
         cart = Cart.objects.get(customer_id=user.customer_id)
-        if (len(keys) > 1):
-            product_ids = []
-            x = 1
-            while x < len(keys):
-                if(keys[x]=='Add_to_cart'):
-                    x+=1
-                    continue
-                product_ids.append(int(keys[x].split('product_')[1]))
-                x += 1
+        if 'Cancel_order' in request.POST:
+            order_id = request.POST['order_id']
+            query = "delete from service.orders \nwhere order_id='{0}'".format(order_id)
+            print(query)
+            cursor = connection.cursor()
+            cursor.execute(query)
+            cursor.close()
+
+        else:
+            if(len(keys) > 1):
+                product_ids = []
+                x = 1
+                while x < len(keys):
+                    if(keys[x]=='Add_to_cart'):
+                        x+=1
+                        continue
+                    product_ids.append(int(keys[x].split('product_')[1]))
+                    x += 1
         if 'Add_to_cart' in request.POST:
             for i in range(len(product_ids)):
                 query = 'exec service.add_to_cart @cart_id = {0}, @product_id={1}'.format(cart.cart_id,product_ids[i])
@@ -147,7 +167,7 @@ def profile(request):
         Fname = request.POST['Fname']
         Lname = request.POST['Lname']
         Email = request.POST['email']
-        Birthdate = request.POST['Birthdate']
+        Birthdate = request.POST['birthdate']
         query = 'exec service.update_info @username={0}, @address="{1}", @Fname={2}, @Lname={3}, ' \
                '@Email="{4}", @Birthdate="{5}"'.format(username,address,Fname,Lname,Email,Birthdate)
         cursor = connection.cursor()
@@ -159,9 +179,34 @@ def profile(request):
         except:
             error = 'cannot save'
             return render(request,'service/profile.html', {'user':user,'error':error})
+        user = Customer.objects.get(username=username)
     return render(request,'service/profile.html', {'user':user})
 
 
 def logout(request):
     del request.session['username']
     return homepage(request)
+
+def checkout(request):
+    username = request.session['username']
+    user = Customer.objects.get(username=username)
+    cart = Cart.objects.get(customer_id=user.customer_id)
+    contain_list = Contain.objects.filter(cart_id=cart.cart_id)
+    for i in range(len(contain_list)):
+        product_id = contain_list[i].product_id
+        product = Product.objects.get(product_id=product_id)
+        if(product.amount < contain_list[i].amount):
+            return HttpResponse("Product: "+product.product_name+ " only have "+str(product.amount)+ " left.")
+    order_id = username[:4]+ str(random.randint(0,99)) + str(date.today())
+    query = "exec service.create_order @cart_id={0}, @Order_id='{1}', @total_price={2}"\
+        .format(cart.cart_id, order_id, cart.total_price)
+    print(query)
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query)
+    except Exception as e:
+        print(e)
+        pass
+    cursor.close()
+    order = Orders.objects.get(order_id=order_id)
+    return render(request, 'service/checkout.html', {'user': user,'order':order})

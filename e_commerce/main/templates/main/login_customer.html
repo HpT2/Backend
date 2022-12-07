@@ -73,7 +73,9 @@
                   placeholder="Enter password"
                 />
               </div>
-
+              {% if error %}
+                <div class = "error-message-login active" style="color: red; font-weight: 400">{{ error }}</div>
+              {% endif %}
               <div class="d-flex justify-content-between align-items-center">
                 <div class="text-center mt-4" >
                   <!-- Checkbox -->

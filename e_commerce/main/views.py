@@ -8,9 +8,9 @@ from management.views import admin_home
 # Create your views here.
 
 
-def login_customer(request):
+def login_customer(request,error=None):
     form = LoginForm()
-    return render(request,'main/login_customer.html', {'form': form})
+    return render(request,'main/login_customer.html', {'form': form,'error':error})
 
 
 def home(request):
@@ -24,7 +24,8 @@ def home(request):
             cursor.execute(query)
         except Exception as e:
             cursor.close()
-            return HttpResponse("No user")
+            error = 'Sai tên đăng nhập hoặc mật khẩu'
+            return login_customer(request,error)
         cursor.close()
         request.session['username'] = username
         return homepage(request)
@@ -36,9 +37,9 @@ def signup_page(request):
     return render(request, 'main/signup.html')
 
 
-def login_admin(request):
+def login_admin(request,error=None):
     form = LoginForm()
-    return render(request, 'main/login_admin.html', {'form': form})
+    return render(request, 'main/login_admin.html', {'form': form,'error':error})
 
 
 
@@ -54,7 +55,8 @@ def login_admin_res(request):
         res = cursor.fetchall()
         if(len(res)==0):
             cursor.close()
-            return HttpResponse("No user")
+            error = 'Sai tên tài khoản hoặc mật khẩu'
+            return login_admin(request,error)
         cursor.close()
         request.session['username'] = username
         return admin_home(request)
