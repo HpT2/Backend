@@ -44,6 +44,31 @@
       href="{% static 'css/style.css' %}"
       type="text/css"
     />
+    <style>
+      .addToCartBtn {
+        {% comment %} margin: 174px 0 0 0; {% endcomment %}
+        position:absolute;
+        right: 0;
+        height: 38px;
+        background-color: #7fad39;
+        color: #fff;
+        font-weight: 600;
+    }
+    .addToCartBtn:hover {
+      color: #fff;
+      background-color: #6ba513;
+    }
+
+    . product__item__pic__hover {
+      display: block;
+    }
+    .shopping-form {
+      position: relative:
+    }
+    .product-amount{
+
+    }
+    </style>
   </head>
 
   <body>
@@ -104,7 +129,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"
+              <a href="#"
                 ><img src="../../static/img/logo.png" alt=""
               /></a>
             </div>
@@ -124,7 +149,7 @@
               </ul>
             </nav>
           </div>
-          <div class="col-lg-3">
+          {% comment %} <div class="col-lg-3">
             <div class="header__cart">
               <ul>
                 <li>
@@ -135,7 +160,7 @@
               </ul>
               <div class="header__cart__price">item: <span>$150.00</span></div>
             </div>
-          </div>
+          </div> {% endcomment %}
         </div>
         <div class="humberger__open">
           <i class="fa fa-bars"></i>
@@ -224,7 +249,7 @@
                   {% endfor %}
                 </ul>
               </div>
-              <div class="sidebar__item">
+              {% comment %} <div class="sidebar__item">
                 <h4>Price</h4>
                 <div class="price-range-wrap">
                   <div
@@ -251,7 +276,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
           <div class="col-lg-9 col-md-7">
@@ -273,7 +298,7 @@
 
 
               <!-- insert for loop here -->
-              <form action="{% url 'service:cart_page'%}" method = 'post'>
+              <form action="{% url 'service:cart_page'%}" method = 'post' class="shopping-form">
                 {% csrf_token %}
                 <div class="row">
               {% for product in product_list %}
@@ -292,13 +317,14 @@
                     </div>
                     <div class="product__item__text">
                       <h6><a href="#">{{ product.product_name }}</a></h6>
+                      <span class="product-amount">{{product_amount}}</span>
                       <h5>${{ product.price }}</h5>
                     </div>
                   </div>
                 </div>
               {% endfor %}
-                <input type="submit" value="Add to cart" name="Add_to_cart">
-              </div>
+            </div>
+            <input type="submit" class="btn addToCartBtn" value="Add to cart" name="Add_to_cart">
               </form>
               <!-- endfor -->
             <div class="product__pagination">
