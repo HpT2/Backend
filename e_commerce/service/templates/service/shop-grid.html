@@ -303,23 +303,28 @@
                 <div class="row">
               {% for product in product_list %}
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                  <div class="product__item">
+                  <div class="product__item" style="position: relative">
                     <div
                       class="product__item__pic set-bg"
                       data-setbg="../../{{product.product_img}}"
                     >
-                      <ul class="product__item__pic__hover">
-                        <li>
-                          <input type="radio" name ="product_{{ product.product_id }}" value="1" >
-                          <i class="fa fa-shopping-cart"></i>
-                        </li>
-                      </ul>
+                   
+                        
+                          
+                          {% comment %} <i class="fa fa-shopping-cart"></i> {% endcomment %}
+                       
+                      
                     </div>
                     <div class="product__item__text">
-                      <h6><a href="#">{{ product.product_name }}</a></h6>
-                      <span class="product-amount">{{product_amount}}</span>
-                      <h5>${{ product.price }}</h5>
-                    </div>
+                      <span class="ml-0 pl-0" style="font-weight:700">{{ product.product_name }}</span>
+                      {% comment %} <span class="ml-2">Price:</span> {% endcomment %}
+                      <input class="ml-5" type="checkbox" name ="product_{{ product.product_id }}" value="1" style="
+                         ">
+                      <span style="font-weight:500; color:#dc3545;" class="ml-1">${{ product.price }}</span>
+                      <div class="mt-1">
+                         <p style="font-size:13px" >Amount: </P>
+                      </div>
+                   </div>
                   </div>
                 </div>
               {% endfor %}
