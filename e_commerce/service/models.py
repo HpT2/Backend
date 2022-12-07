@@ -58,7 +58,7 @@ class Contain(models.Model):
 
 
 class Orders(models.Model):
-    order_id = models.CharField(db_column='Order_ID',primary_key = True, max_length=5, db_collation='SQL_Latin1_General_CP1_CI_AS')  # Field name made lowercase.
+    order_id = models.CharField(db_column='Order_ID',primary_key = True, max_length=10, db_collation='SQL_Latin1_General_CP1_CI_AS')  # Field name made lowercase.
     order_date = models.DateField(db_column='Order_date')  # Field name made lowercase.
     discount = models.FloatField(db_column='Discount', blank=True, null=True)  # Field name made lowercase.
     total_price = models.FloatField(db_column='Total_price')  # Field name made lowercase.
