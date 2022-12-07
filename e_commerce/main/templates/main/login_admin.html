@@ -71,6 +71,11 @@
                   placeholder="Enter password"
                 />
               </div>
+
+              {% if error %}
+                <div class = "error-message-login active" style="color: red; font-weight: 400">{{ error }}</div>
+              {% endif %}
+
                 <!-- Button Login -->
                 <div class="text-center text-lg-start mt-5" >
                   <input type="submit" value="Login" class="btn-primary btn-lg ">
